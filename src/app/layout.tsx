@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,15 +20,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4 text-center">
+          Computer Science
+        </h1>
+
+        {/* Navbar */}
+        <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
+          <div className="text-2xl font-bold text-blue-600">BUS*12</div>
+
+          {/* เมนู */}
+          <div className="flex space-x-6">
+          <Link href="/" className="text-gray-700 hover:text-blue-600 transition duration-200">Home</Link>
+            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition duration-200">About</Link>
+            <Link href="/DynNav_member" className="text-gray-700 hover:text-blue-600 transition duration-200">Member</Link>
+            <Link href="/portfolio" className="text-gray-700 hover:text-blue-600 transition duration-200">Portfolio</Link>
+            <Link href="/teacher" className="text-gray-700 hover:text-blue-600 transition duration-200">Teacher</Link>
+            <Link href="/Contact" className="text-gray-700 hover:text-blue-600 transition duration-200">Contact</Link>
+          </div>
+        </nav>
+
+        <main className="p-6">{children}</main>
       </body>
     </html>
   );
